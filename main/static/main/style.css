@@ -1,0 +1,244 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #263147;
+
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+
+  .fullscreen-bg {
+    position:absolute; 
+    width: 100%;
+    z-index: -1; 
+    background-size: cover; 
+    object-fit: cover;
+  }
+  
+  main{
+    flex: 1;
+  }
+  .main-content {
+    position: relative;
+    z-index: 2;
+    margin-top: 100px; 
+    width: 100%;
+   
+  }
+  
+  .centered-text {
+    top: 30%;
+    text-align: center;
+    color: white;
+    padding: 0 20px;
+    z-index: 2;
+    opacity: 0;
+    animation: fadeIn 2s ease-out forwards 0.5s;
+  }
+  
+  .centered-text h1 {
+    font-size: 90px;
+    font-weight: 800;
+    margin-top: 0.5rem;
+
+  }
+  
+  .centered-text p {
+    font-size: 36px;
+    font-weight: 100;
+    margin-bottom: 0.5rem;
+
+  }
+  
+
+  .arrow {
+    transform: translateY(-250px); 
+    position: absolute;
+    left: 45px;
+    animation: slideDown 2s ease-out forwards 2s;
+    animation-delay: 0.3s;
+  }
+
+.info{ 
+    transform: translate(80px,0px);
+    color:white;
+    width: 280px;          
+    padding: 5px 10px 5px 20px;         
+    background-color: rgba(38, 49, 71, 0.54);  
+    backdrop-filter: blur(3px);
+    border-radius: 40px; 
+    margin: 20px;               
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1); 
+    font-family: Roboto, sans-serif; 
+    font-size: 20px;   
+    font-weight: 300;    
+    opacity: 0;  
+    animation: fadeIn 1s ease-out forwards 0.9s;
+    z-index: 2;
+  }
+
+  .button_main{
+    font-family: 'Roboto', sans-serif;
+    font-size: 1rem;
+    font-weight: 300;
+    background: #47203F;
+    color: white;
+    z-index: 2;
+    position: absolute;
+    right: 0%;
+    top: 550px;
+    border-radius: 100px 0 0 100px;
+    border:none;
+    padding: 1rem 1.5rem;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+
+  .title{
+    margin-top: 600px;
+    margin-left: 30px;
+    font-weight: 600;
+    font-size: 64px;
+    color: white;
+    flex-shrink: 0;
+  }
+  
+  .main_center{
+    display: flex;
+    justify-content: space-between;
+    gap: 40px; 
+    align-items: flex-start; 
+    max-width: 1200px;
+    margin: 20px;
+  }
+  
+  .main_center_1{
+    display: flex;
+    justify-content: space-between;
+    gap: 40px; 
+    align-items: flex-start; 
+    max-width: 1180px;
+    max-height: 700px;
+    margin: 20px;
+  }
+  .facts{
+    color:white;
+    font-size: 40px;
+    list-style: none;
+    padding-left: 30px;
+    width: 800px;
+    flex-shrink: 0;
+  }
+  .imgback{
+    width: 550px;
+    background-size: cover; 
+    object-fit: cover;
+    margin-left: auto;
+    z-index: -2;
+  }
+
+  .path{
+    transform:translate(-400px, 620px);
+    z-index: -1;
+    width: 80%;
+    object-fit: cover;
+    object-position: right;
+    max-height: 50%;
+  }
+.button_main:hover {
+    background-color: #FED883;  
+}
+.other_content{
+  z-index: 2;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 120%;
+  background-color: rgba(0,0,0,0.5);
+  z-index: 1000;
+  transform: translateY(-100px);
+}
+
+.modal-content {
+  background-color: white;
+  margin: 15% auto;
+  padding: 20px;
+  width: 90%;
+  max-width: 400px;
+  border-radius: 8px;
+  font-family: 'Roboto', sans-serif;
+}
+
+.modal-content h2 {
+  margin-top: 0;
+  font-size: 24px;
+  color: #333;
+}
+
+.modal-content form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.modal-content input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.modal-content select{
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.modal-content button {
+  padding: 10px;
+  background-color: #47203F;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+
+
+.modal-content button:hover {
+  background-color: #674872; 
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close:hover {
+  color: #000;
+}
+
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-250px); /* Начальное положение */
+  }
+  to {
+    transform: translateY(-100px); /* Конечное положение */
+  }
+}
+
+@keyframes fadeIn {
+  to { opacity: 1; }
+}

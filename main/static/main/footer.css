@@ -1,0 +1,15 @@
+footer{
+  font-family: Roboto;
+  display: flex;
+  font-weight: 300;
+  justify-content: center;
+  padding: 5px;
+  background-color: #263147 ;
+  color: #fff;
+  position: static;
+  border-top: #fff;
+}
+
+.footer_copyright{
+  text-align: center;
+}

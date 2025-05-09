@@ -1,0 +1,93 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <!-- <meta http-equiv="refresh" content="10"> -->   
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Caucasus</title>
+    <link rel="stylesheet" href="{% static 'main/style.css' %}">
+    <link rel="stylesheet" href="{% static 'main/header.css' %}">
+    <link rel="stylesheet" href="{% static 'main/footer.css' %}">
+    <link rel="icon" href="{% static 'main/images/logo.png' %}" type="logo-image">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700&display=swap" rel="stylesheet">
+
+<body>
+    <header class="header">
+        <div class="header__container">
+            <a href="/" class="header__logo">
+                <img src="{% static 'main/images/logo.png' %}"  class="logo-image">
+                <span class="logo-text">Саucasus</span>
+            </a>
+    
+            <!-- Навигация -->
+            <nav class="header__nav">
+                <a href="/" class="nav-link">Главная</a>
+                <a href="/elbrus/" class="nav-link">Эльбрус</a>
+                <a href="/endemics/" class="nav-link">Эндемики</a>
+                <a href="/routes/" class="nav-link">Маршруты</a>
+            </nav>
+    
+            <!-- Кнопка "Войти" -->
+            <button class="header__login-button" onclick="openModal()">Записаться</button>
+        </div>
+    </header>
+
+
+    <div id="loginModal" class="modal">
+      <div class="modal-content">
+          <span class="close" onclick="closeModal()">&times;</span>
+          <h2>Экскурсии</h2>
+          <p>Оставьте данные для того, чтобы мы могли связаться с вами!</p>
+          <form>
+              <input type="text" placeholder="Имя" required>
+              <input type="email" placeholder="Почта" required>
+              <input tpe="phone" placeholder="Телефон" optional>
+              <select name="excurse" required>
+                <option value="1">Красоты Домбая</option>
+                <option value="2">Роза Хутор</option>
+                <option value="3">Архыз</option>
+              </select>
+              <input type="date" placeholder="Дата" required>
+              <button type="submit">Записаться</button>
+          </form>
+      </div>
+  </div>
+
+
+    <img class="fullscreen-bg" src="{% static 'main/images/background_main.png' %}" />
+    <main class="main-content">
+
+      <img class="arrow" src="{% static 'main/images/arrow.svg' %}"/>
+      
+            <div class="centered-text">
+                <p>ПОЗНАКОМЬТЕСЬ С КРАСОТОЙ</p>
+                <h1>КАВКАЗСКИХ ГОР</h1>
+            </div>  
+            <div class ="info">
+              <p><span style="color:#FED883">Самые молодые</span> горы планеты простираются через 6 стран и являются <span style="color:#FED883">самыми высокими</span> в Европе</p>
+          </div>
+            <button class="button_main">ЛУЧШИЕ ГОРНОЛЫЖНЫЕ КУРОРТЫ</button>
+          <div class = main_center_1>
+            <p class="title">ЗДЕСЬ НАЧИНАЕТСЯ НЕБО</p>
+            <img class="path" src="{% static 'main/images/path.svg' %}"/>
+          </div>
+          <div class = main_center>
+            <ul class="facts">
+              <li>Самая высокая гора - <span style="color:#FED883">Эльбрус</span></li>
+              <li>Самый длинный маршрут - <span style="color:#FED883">Национальная кавказская тропа</span></li>
+              <li>Площадь хребта - <span style="color:#FED883">477 488 км²</span></li>
+              <li>Самый сложный маршрут - <span style="color:#FED883">>\№30</span></li>
+            </ul>
+            <img class="imgback" src="{% static 'main/images/backmain2.png' %}" />
+          </div>
+
+      </main> 
+    <footer>
+        <p>© 2025 Caucasus Travel. Все права защищены.</p>
+    </footer>
+    <script src="{% static 'main/script.js' %}"></script>
+</body>
+</html>

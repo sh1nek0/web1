@@ -65,9 +65,9 @@ def like_post(request, post_id):
     try:
         post = get_object_or_404(Post, id=post_id)
         data = json.loads(request.body)
-        value = data.get("value", True)  # ✅ Получаем значение из запроса
+        value = data.get("value", True) 
 
-        Like.objects.create(post=post, value=value)  # ✅ Создаём лайк или дизлайк
+        Like.objects.create(post=post, value=value) 
 
         likes_count = post.likes.filter(value=True).count()
         dislikes_count = post.likes.filter(value=False).count()

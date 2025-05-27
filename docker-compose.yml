@@ -1,31 +1,8 @@
 services:
-  backend:
+  caucasus:
     build: ./backend_service
     ports:
       - "8000:8000"
     volumes:
       - ./backend_service/db.sqlite3:/app/db.sqlite3
-    depends_on:
-      - likes
-      - booking
 
-  likes:
-    build: ./likes_service
-    ports:
-      - "8001:8001"
-    volumes:
-      - ./likes_service/db.sqlite3:/app/db.sqlite3
-
-  booking:
-    build: ./booking_service
-    ports:
-      - "8002:8002"
-    volumes:
-      - ./booking_service/db.sqlite3:/app/db.sqlite3
-
-  frontend:
-    build: ./frontend_service
-    ports:
-      - "8003:8003"
-    depends_on:
-      - backend

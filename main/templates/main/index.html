@@ -41,18 +41,19 @@
           <span class="close" onclick="closeModal()">&times;</span>
           <h2>Экскурсии</h2>
           <p>Оставьте данные для того, чтобы мы могли связаться с вами!</p>
-          <form>
-              <input type="text" placeholder="Имя" required>
-              <input type="email" placeholder="Почта" required>
-              <input tpe="phone" placeholder="Телефон" optional>
-              <select name="excurse" required>
-                <option value="1">Красоты Домбая</option>
-                <option value="2">Роза Хутор</option>
-                <option value="3">Архыз</option>
-              </select>
-              <input type="date" placeholder="Дата" required>
-              <button type="submit">Записаться</button>
-          </form>
+          <form id="writeOn">
+            <input type="text" name="client_name" placeholder="Имя" required>
+            <input type="email" name="client_email" placeholder="Почта" required>
+            <input type="tel" name="client_phone" placeholder="Телефон">
+            <select name="excurse" required>
+                <option value="" disabled selected>Выберите экскурсию</option>
+                <option value="Красоты Домбая">Красоты Домбая</option>
+                <option value="Роза Хутор">Роза Хутор</option>
+                <option value="Архыз">Архыз</option>
+            </select>
+            <input type="date" name="excursion_date" min="2025-05-27" required>
+            <button type="submit">Записаться</button>
+        </form>
       </div>
   </div>
 
@@ -69,10 +70,10 @@
             <div class ="info">
               <p><span style="color:#FED883">Самые молодые</span> горы планеты простираются через 6 стран и являются <span style="color:#FED883">самыми высокими</span> в Европе</p>
           </div>
-            <button class="button_main">ЛУЧШИЕ ГОРНОЛЫЖНЫЕ КУРОРТЫ</button>
+            <a  href="{% url 'thabest' %}" class="button_main">ЛУЧШИЕ ГОРНОЛЫЖНЫЕ КУРОРТЫ</a>
           <div class = main_center_1>
             <p class="title">ЗДЕСЬ НАЧИНАЕТСЯ НЕБО</p>
-            <img class="path" src="{% static 'main/images/path.svg' %}"/>
+            <img class="path" src="{% static 'main/images/path1.svg' %}"/>
           </div>
           <div class = main_center>
             <ul class="facts">
@@ -83,11 +84,128 @@
             </ul>
             <img class="imgback" src="{% static 'main/images/backmain2.png' %}" />
           </div>
+          <div>
+            <h1 class="title_1">ГОРНОЛЫЖЫЕ КУРОРТЫ</p>
+          </div>
+          <div class = img_center>
+            {% for post in posts %}
+                {% if post.id == 4 %}
+                    <div class ='img_block'>
+                        <img class="resort" src="{% static 'main/images/dombai.png' %}" />
+                        <div class="overlay">
+                        <p>Домбай</p>
+                        <p style="font-weight:300; font-size: 30px">Карачаево-Черкессия</p>
+                        
+                        <button class="like-btn" data-post="{{ post.id }}" data-value="1">Рекомендуют <span id="like-count-{{ post.id }}">{{ post.like_count }}</span></button>
+                        <button class="dislike-btn" data-post="{{ post.id }}" data-value="0">Не рекомендуют <span id="dislike-count-{{ post.id }}">{{ post.dislike_count }}</span></button>
+                        
+                    </div>
+                    </div>
+                {% endif %}     
+                {% if post.id == 2 %}
+                        <div class ='img_block'>
+                            <img class="resort" src="{% static 'main/images/rozahutor.png' %}" />
+                            <div class="overlay">
+                            <p>Роза Хутор</p>
+                            <p style="font-weight:300; font-size: 30px">Краснодарский край</p>
+                            <button class="like-btn" data-post="{{ post.id }}" data-value="1">Рекомендуют <span id="like-count-{{ post.id }}">{{ post.like_count }}</span></button>
+                            <button class="dislike-btn" data-post="{{ post.id }}" data-value="0">Не рекомендуют <span id="dislike-count-{{ post.id }}">{{ post.dislike_count }}</span></button>
+                             </div>
+                         </div>
+                {% endif %}
+                {% if post.id == 3 %}
+                    <div class ='img_block'>
+                        <img class="resort" src="{% static 'main/images/arhiz.png' %}" />
+                        <div class="overlay">
+                        <p>Архыз</p>
+                        <p style="font-weight:300; font-size: 30px">Карачаево-Черкессия</p>
+                        <button class="like-btn" data-post="{{ post.id }}" data-value="1">Рекомендуют <span id="like-count-{{ post.id }}">{{ post.like_count }}</span></button>
+                        <button class="dislike-btn" data-post="{{ post.id }}" data-value="0">Не рекомендуют <span id="dislike-count-{{ post.id }}">{{ post.dislike_count }}</span></button>
+                    </div>
+                    </div> 
+                {% endif %}
+            {% endfor %} 
+          </div>
+      
+<script>
+document.querySelectorAll(".like-btn, .dislike-btn").forEach(button => {
+    button.addEventListener("click", function () {
+        const postId = this.dataset.post;
+        const value = this.classList.contains("like-btn"); 
+
+        fetch(`/like/${postId}/`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json", "X-CSRFToken": getCookie("csrftoken") },
+            body: JSON.stringify({ value })
+        })
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById(`like-count-${postId}`).textContent = data.likes;
+            document.getElementById(`dislike-count-${postId}`).textContent = data.dislikes;
+        })
+        .catch(error => console.error("Ошибка запроса:", error));
+    });
+});
+
+
+
+function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== "") {
+        const cookies = document.cookie.split(";");
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            if (cookie.startsWith(name + "=")) {
+                cookieValue = cookie.substring(name.length + 1);
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+</script>
 
       </main> 
     <footer>
         <p>© 2025 Caucasus Travel. Все права защищены.</p>
     </footer>
     <script src="{% static 'main/script.js' %}"></script>
+    <script>
+      document.getElementById('writeOn').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    
+    const form = e.target;
+    const formData = new FormData(form);
+    
+    
+    const formDataObj = {};
+    formData.forEach((value, key) => {
+        formDataObj[key] = value;
+        console.log(key, value); 
+    });
+    
+    
+    try {
+        const response = await fetch('/api/feedback/', {
+            method: 'POST',
+            body: formData, 
+        });
+
+        
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        
+        const result = await response.json();
+        console.log('Ответ сервера:', result);
+        alert('Данные успешно отправлены!');
+        form.reset();
+        
+    } catch (error) {
+        console.error('Ошибка:', error);
+        alert('Ошибка при отправке: ' + error.message);
+    }
+});      
+    </script>
 </body>
 </html>

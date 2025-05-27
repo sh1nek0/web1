@@ -1,12 +1,17 @@
-body {
+  body {
     margin: 0;
     padding: 0;
     background-color: #263147;
-
     display: flex;
     flex-direction: column;
     min-height: 100vh;
   }
+
+  *{
+    font-family: 'Roboto';
+
+  }
+
 
   .fullscreen-bg {
     position:absolute; 
@@ -93,6 +98,7 @@ body {
     padding: 1rem 1.5rem;
     cursor: pointer;
     transition: background 0.3s;
+    text-decoration: none;
   }
 
   .title{
@@ -145,12 +151,21 @@ body {
     object-fit: cover;
     object-position: right;
     max-height: 50%;
+    clip-path: inset(0 0 50px 0);
   }
 .button_main:hover {
     background-color: #FED883;  
 }
 .other_content{
   z-index: 2;
+}
+
+.title_1{
+  color: white;
+  font-size: 64px;
+  font-weight: 600;
+  margin-top: 200px;
+  margin-left: 30px;
 }
 
 .modal {
@@ -229,7 +244,85 @@ body {
   color: #000;
 }
 
+.resort:hover{
+    animation: bounce;
+}
 
+.img_center{
+  display: flex;
+  justify-content: space-between; 
+  align-items: center; 
+  flex-wrap: nowrap; 
+}
+
+.img_block {
+  position: relative;
+  display: inline-block;
+}
+
+
+.img_block img {
+  width: 450px;
+  height: auto;
+  margin-left: 10px;
+  margin-right: 10px;
+  border-radius: 10px;
+}
+
+.overlay {
+  position: absolute;
+  bottom: 50px; 
+  left: 50%;
+  transform: translateX(-50%);
+  color: white;
+  padding: 10px;
+  text-align: left;
+  border-radius: 10px;
+  width: 90%;
+  font-size: 40px;
+}
+
+.overlay p{
+  text-align: left;
+  margin: 0;
+}
+
+.like-btn{
+  font-family: 'Roboto', sans-serif;
+  font-size: 1rem;
+  font-weight: 300;
+  background:white;
+  color: 47203F;
+  border: none;
+  border-radius: 20px;
+  padding: 0.5rem 1.5rem;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+
+.dislike-btn{
+  font-family: 'Roboto', sans-serif;
+  font-size: 1rem;
+  font-weight: 300;
+  background:#674872;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 0.5rem 1.5rem;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.like-btn:hover {
+  background: #674872;
+  color:white
+}
+
+.dislike-btn:hover {
+  background: #FED883;
+  color:#674872
+}
 @keyframes slideDown {
   from {
     transform: translateY(-250px); /* Начальное положение */
@@ -242,3 +335,4 @@ body {
 @keyframes fadeIn {
   to { opacity: 1; }
 }
+

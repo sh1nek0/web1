@@ -1,0 +1,35 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Caucasus</title>
+    <link rel="stylesheet" href="{% static 'main/style.css' %}">
+    <link rel="stylesheet" href="{% static 'main/header.css' %}">
+    <link rel="stylesheet" href="{% static 'main/footer.css' %}">
+    <link rel="icon" href="{% static 'main/images/logo.png' %}" type="logo-image">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700&display=swap" rel="stylesheet">
+
+<body>
+    <header class="header">
+        <div class="header__container">
+            <a href="/" class="header__logo">
+                <img src="{% static 'main/images/logo.png' %}"  class="logo-image">
+                <span class="logo-text">Саucasus</span>
+            </a>
+            <nav class="header__nav">
+                <a href="{% url  'index' %}" class="nav-link">Главная</a>
+                <a href="/elbrus/" class="nav-link">Эльбрус</a>
+                <a href="/endemics/" class="nav-link">Эндемики</a>
+                <a href="/routes/" class="nav-link">Маршруты</a>
+            </nav>
+        </div>
+    </header>
+    <video loop muted controls disablepictureinpicture 
+       style="width: 60%; height: 50%;">
+    <source src="{% static 'main/images/stick.mp4' %}" type="video/mp4">
+</video>
+</body>
